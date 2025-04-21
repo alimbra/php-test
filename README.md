@@ -40,3 +40,29 @@ What do we expect from you:
  - a file / message / email explaining your process and principles you've followed
 
 **Good luck!**
+
+*** MY IMPLEMENTATION ***
+
+First of all, since i preferred to work on newer version of PHP, i updated composer.json. I didnt modified any other files in Repository or Helper. Now the project works on PHP8.3
+
+When analysing TemplateManager, i did spot some SOLID violations along as Clean Code violations and dependency violations 
+
+- Single responsibility violations.
+
+- No Dependency Injection.
+
+- Lack of use of appropriate design patterns.
+
+- lack of readability and maintainability.
+
+After upgrade the project, i checked that [quote:*], [user:*] can be separated and have almost similar treatment wich is updating the text but with different data.
+i implement a container `TextHandlers` of `TextHandlerInterface` interfaces.
+
+This interface will check if we can computeText the text then update it. The `QuoteHandler` and `UserHandler` will both implement this interface.
+
+
+Using DP Chain of Responsibility (inspired), The `TextHandlers` will check for all the handlers in the array to update the text.
+
+As a Result, we guaranty the extensibility and testability and also the Single responsibility for the `TemplateManager`
+
+i also add Dependency Injection instead and remove tight coupling
